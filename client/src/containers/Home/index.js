@@ -120,20 +120,6 @@ export default class Home extends Component {
                            </span>
                         )
                     }
-                    <tbody>
-                        {
-                            this.state.todos.map((data, i) =>
-                                <tr>
-                                    <th scope="row">{i}</th>
-                                    <td>{data.todo}</td>
-                                    <td style={{ cursor: 'pointer' }}>
-                                        <button type="button" onClick={(e) => this.onEditTodo(e, data)} class="btn btn-primary" data-toggle="modal" data-target="#exampleModal"><i class="fas fa-edit"></i></button>&nbsp;&nbsp;&nbsp;
-                                    <button class="btn btn-danger" onClick={(e) => this.onDeleteTodo(e, data._id)}><i class="fas fa-trash"></i></button>
-                                    </td>
-                                </tr>
-                            )
-                        }
-                    </tbody>
                 </table>
                 {
                     this.state.todo &&
