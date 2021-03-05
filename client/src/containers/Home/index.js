@@ -1,6 +1,15 @@
 import React, { Component } from 'react'
 import axios from 'axios'
+import Loader from "react-loader-spinner"
 
+const style = 
+	{
+	 position: "fixed",
+	 top: "50%", 
+	 left: "50%",
+	 transform: "translate(-50%, -50%)"
+    };
+    
 export default class Home extends Component {
     constructor(props) {
 
@@ -82,6 +91,35 @@ export default class Home extends Component {
                             <th scope="col">Action</th>
                         </tr>
                     </thead>
+                    {
+                        this.state.isLoading ? (
+                            <tbody>
+                            {
+                                this.state.todos.map((data, i) =>
+                                    <tr>
+                                        <th scope="row">{i}</th>
+                                        <td>{data.todo}</td>
+                                        <td style={{ cursor: 'pointer' }}>
+                                            <button type="button" onClick={(e) => this.onEditTodo(e, data)} class="btn btn-primary" data-toggle="modal" data-target="#exampleModal"><i class="fas fa-edit"></i></button>&nbsp;&nbsp;&nbsp;
+                                        <button class="btn btn-danger" onClick={(e) => this.onDeleteTodo(e, data._id)}><i class="fas fa-trash"></i></button>
+                                        </td>
+                                    </tr>
+                                )
+                            }
+                        </tbody>
+                        ) : 
+                        (
+                            <span style={style}>
+                            <Loader
+                           type="ThreeDots"
+                           color="#00BFFF"
+                           height={100}
+                           width={100}
+                           timeout={3000} //3 secs
+                            />
+                           </span>
+                        )
+                    }
                     <tbody>
                         {
                             this.state.todos.map((data, i) =>
